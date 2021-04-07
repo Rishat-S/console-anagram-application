@@ -17,8 +17,8 @@ class MainTest {
 
 	@Test
 	void testRevers() {
-		String rev = Main.revers("abcd efgh");
-		assertEquals("dcba hgfe", rev);
+		String rev = Main.revers("abcd efghi");
+		assertEquals("dcba ihgfe", rev);
 	}
 	
 	@Test

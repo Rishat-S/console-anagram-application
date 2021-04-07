@@ -16,16 +16,22 @@ public class Main {
 	}
 
 	public static String revers(String input) {
-		StringBuilder result = new StringBuilder();
+		String result = "";
 		String[] sArrays = input.split(" ");
+		char tmp;
 		for (String string : sArrays) {
 			char[] charArrays = string.toCharArray();
-			for(int i = string.length() - 1; i >= 0; i--) {
-				result.append(charArrays[i]);
+			for(int i = 0; i < string.length() / 2; i++) {
+				if (Character.isLetter(charArrays[i])) {
+					tmp = charArrays[i];
+					if (Character.isLetter(charArrays[string.length()-1-i])) {
+						charArrays[i] = charArrays[string.length()-1-i];
+						charArrays[string.length()-1-i] = tmp;
+					}
+				}
 			}
-			result.append(" ");
+			result = result + String.valueOf(charArrays) + " ";
 		}
-		
-		return result.toString().trim();
+		return result.trim();
 	}
 }
