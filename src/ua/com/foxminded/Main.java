@@ -18,30 +18,30 @@ public class Main {
     public static String revers(String input) {
         String result = "";
         String[] stringsArray = input.split(" ");
-        char tmp;
 
         for (String string : stringsArray) {
             char[] charsArray = string.toCharArray();
             int indexOffsetToTheRight = 0;
             int indexOffsetToTheLeft = 0;
-            for (int i = 0; i < string.length() / 2; i++) {
-                if (Character.isLetter(charsArray[i + indexOffsetToTheRight])) {
-                    tmp = charsArray[i + indexOffsetToTheRight];
-                    if (Character.isLetter(charsArray[string.length() - 1 - i - indexOffsetToTheLeft])) {
-                        charsArray[i] = charsArray[string.length() - 1 - i - indexOffsetToTheLeft];
-                        charsArray[string.length() - 1 - i - indexOffsetToTheLeft] = tmp;
+            for (int idex = 0; idex < string.length() / 2; idex++) {
+            	char tmp;
+                if (Character.isLetter(charsArray[idex + indexOffsetToTheRight])) {
+                    tmp = charsArray[idex + indexOffsetToTheRight];
+                    if (Character.isLetter(charsArray[string.length() - 1 - idex - indexOffsetToTheLeft])) {
+                        charsArray[idex + indexOffsetToTheRight] = charsArray[string.length() - 1 - idex - indexOffsetToTheLeft];
+                        charsArray[string.length() - 1 - idex - indexOffsetToTheLeft] = tmp;
                     } else {
                         indexOffsetToTheLeft++;
-                        charsArray[i + indexOffsetToTheRight] = charsArray[string.length() - 1 - i - indexOffsetToTheLeft];
-                        charsArray[string.length() - 1 - i - indexOffsetToTheLeft] = tmp;
+                        charsArray[idex + indexOffsetToTheRight] = charsArray[string.length() - 1 - idex - indexOffsetToTheLeft];
+                        charsArray[string.length() - 1 - idex - indexOffsetToTheLeft] = tmp;
                     }
                 } else {
                     indexOffsetToTheRight++;
-                    if (Character.isLetter(charsArray[i + indexOffsetToTheRight])) {
-                        tmp = charsArray[i + indexOffsetToTheRight];
-                        if (Character.isLetter(charsArray[string.length() - 1 - i - indexOffsetToTheLeft])) {
-                            charsArray[i + indexOffsetToTheRight] = charsArray[string.length() - 1 - i - indexOffsetToTheLeft];
-                            charsArray[string.length() - 1 - i - indexOffsetToTheLeft] = tmp;
+                    if (Character.isLetter(charsArray[idex + indexOffsetToTheRight])) {
+                        tmp = charsArray[idex + indexOffsetToTheRight];
+                        if (Character.isLetter(charsArray[string.length() - 1 - idex - indexOffsetToTheLeft])) {
+                            charsArray[idex + indexOffsetToTheRight] = charsArray[string.length() - 1 - idex - indexOffsetToTheLeft];
+                            charsArray[string.length() - 1 - idex - indexOffsetToTheLeft] = tmp;
                         }
                     }
                 }
