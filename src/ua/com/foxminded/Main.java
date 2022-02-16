@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String... args) {
+    public static void main(String... args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            String input = reader.readLine();
-            System.out.print(revers(input));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        String input = reader.readLine();
+        System.out.print(revers(input));
+
     }
 
     public static String revers(String input) {
@@ -24,7 +22,7 @@ public class Main {
             int indexOffsetToTheRight = 0;
             int indexOffsetToTheLeft = 0;
             for (int idex = 0; idex < string.length() / 2; idex++) {
-            	char tmp;
+                char tmp;
                 if (Character.isLetter(charsArray[idex + indexOffsetToTheRight])) {
                     tmp = charsArray[idex + indexOffsetToTheRight];
                     if (Character.isLetter(charsArray[string.length() - 1 - idex - indexOffsetToTheLeft])) {
