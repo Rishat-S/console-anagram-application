@@ -3,49 +3,35 @@ package ua.com.foxminded;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class Main {
+
+
     public static void main(String... args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Reader reader = new BufferedReader(new InputStreamReader(System.in));
+        ReversLine reversLine = new ReversLine();
 
-        String input = reader.readLine();
-        System.out.print(revers(input));
+        String line = readLine(reader);
+
+        String reverseSentance = reversLine.reverseSentance(line);
+
+        System.out.println(reverseSentance);
 
     }
 
-    public static String revers(String input) {
-        String result = "";
-        String[] stringsArray = input.split(" ");
+    private static String readLine(Reader reader) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        char[] bufferReader = new char[2<<8];
 
-        for (String string : stringsArray) {
-            char[] charsArray = string.toCharArray();
-            int indexOffsetToTheRight = 0;
-            int indexOffsetToTheLeft = 0;
-            for (int idex = 0; idex < string.length() / 2; idex++) {
-                char tmp;
-                if (Character.isLetter(charsArray[idex + indexOffsetToTheRight])) {
-                    tmp = charsArray[idex + indexOffsetToTheRight];
-                    if (Character.isLetter(charsArray[string.length() - 1 - idex - indexOffsetToTheLeft])) {
-                        charsArray[idex + indexOffsetToTheRight] = charsArray[string.length() - 1 - idex - indexOffsetToTheLeft];
-                        charsArray[string.length() - 1 - idex - indexOffsetToTheLeft] = tmp;
-                    } else {
-                        indexOffsetToTheLeft++;
-                        charsArray[idex + indexOffsetToTheRight] = charsArray[string.length() - 1 - idex - indexOffsetToTheLeft];
-                        charsArray[string.length() - 1 - idex - indexOffsetToTheLeft] = tmp;
-                    }
-                } else {
-                    indexOffsetToTheRight++;
-                    if (Character.isLetter(charsArray[idex + indexOffsetToTheRight])) {
-                        tmp = charsArray[idex + indexOffsetToTheRight];
-                        if (Character.isLetter(charsArray[string.length() - 1 - idex - indexOffsetToTheLeft])) {
-                            charsArray[idex + indexOffsetToTheRight] = charsArray[string.length() - 1 - idex - indexOffsetToTheLeft];
-                            charsArray[string.length() - 1 - idex - indexOffsetToTheLeft] = tmp;
-                        }
-                    }
-                }
+        int amountOfDataInTheBuffer = reader.read(bufferReader);
+        for (int i = 0; i < amountOfDataInTheBuffer; i++) {
+            if (bufferReader[i] == '\n') {
+                break;
             }
-            result = result + String.valueOf(charsArray) + " ";
+            sb.append(bufferReader[i]);
         }
-        return result.trim();
+        return sb.toString();
     }
+
 }
