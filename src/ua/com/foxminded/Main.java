@@ -14,21 +14,17 @@ public class Main {
 
         String line = readLine(reader);
 
-        String reverseSentance = reversLine.reverseSentance(line);
-
-        System.out.println(reverseSentance);
+        System.out.println(reversLine.reverseSentance(line));
 
     }
 
     private static String readLine(Reader reader) throws IOException {
         StringBuilder sb = new StringBuilder();
-        char[] bufferReader = new char[2<<8];
+        char[] bufferReader = new char[2 << 8];
 
         int amountOfDataInTheBuffer = reader.read(bufferReader);
+        System.out.println(amountOfDataInTheBuffer);
         for (int i = 0; i < amountOfDataInTheBuffer; i++) {
-            if (bufferReader[i] == '\n') {
-                break;
-            }
             sb.append(bufferReader[i]);
         }
         return sb.toString();

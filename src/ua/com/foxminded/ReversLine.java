@@ -5,41 +5,44 @@ public class ReversLine {
     private static int indexOffsetToTheLeft;
 
     public String reverseSentance(String line) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         String[] wordsArray = line.split(" ");
 
         for (String word : wordsArray) {
-            result = reverseWord(result, word);
+            result.append(reverseWord(word))
+                    .append(" ");
         }
-        return result.trim();
+        return result.toString().trim();
     }
 
-    private static String reverseWord(String result, String word) {
+    private static String reverseWord(String word) {
         char[] charsArray = word.toCharArray();
-        indexOffsetToTheLeft = 0;
         indexOffsetToTheRight = 0;
+        indexOffsetToTheLeft = word.length() - 1;
 
-        for (int index = 0; index < word.length() / 2; index++) {
-            char tmp;
-            if (Character.isLetter(charsArray[index + indexOffsetToTheRight])) {
-                tmp = charsArray[index + indexOffsetToTheRight];
-                if (!Character.isLetter(charsArray[word.length() - 1 - index - indexOffsetToTheLeft])) {
-                    indexOffsetToTheLeft++;
-                }
-                charsArray[index + indexOffsetToTheRight] = charsArray[word.length() - 1 - index - indexOffsetToTheLeft];
-                charsArray[word.length() - 1 - index - indexOffsetToTheLeft] = tmp;
-            } else {
+        while (indexOffsetToTheRight <= indexOffsetToTheLeft) {
+            if (!Character.isLetter(charsArray[indexOffsetToTheRight])) {
                 indexOffsetToTheRight++;
-                if (Character.isLetter(charsArray[index + indexOffsetToTheRight])) {
-                    tmp = charsArray[index + indexOffsetToTheRight];
-                    if (Character.isLetter(charsArray[word.length() - 1 - index - indexOffsetToTheLeft])) {
-                        charsArray[index + indexOffsetToTheRight] = charsArray[word.length() - 1 - index - indexOffsetToTheLeft];
-                        charsArray[word.length() - 1 - index - indexOffsetToTheLeft] = tmp;
-                    }
-                }
+                continue;
             }
+            if (!Character.isLetter(charsArray[indexOffsetToTheLeft])) {
+                indexOffsetToTheLeft--;
+                continue;
+            }
+
+            switchCharacters(charsArray);
+
+            indexOffsetToTheRight++;
+            indexOffsetToTheLeft--;
         }
-        result = result + String.valueOf(charsArray) + " ";
-        return result;
+
+        return String.valueOf(charsArray);
     }
+
+    private static void switchCharacters(char[] charsArray) {
+        char tmp = charsArray[indexOffsetToTheLeft];
+        charsArray[indexOffsetToTheLeft] = charsArray[indexOffsetToTheRight];
+        charsArray[indexOffsetToTheRight] = tmp;
+    }
+
 }

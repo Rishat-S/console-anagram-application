@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * All non-letter symbols should stay on the same places:
  * E.g. "a1bcd efg!h" => "d1cba hgf!e"
  * Use Latin alphabet for test only.
- *
  **/
 
 class MainTest {
