@@ -23,7 +23,6 @@ public class Main {
         char[] bufferReader = new char[2 << 8];
 
         int amountOfDataInTheBuffer = reader.read(bufferReader);
-        System.out.println(amountOfDataInTheBuffer);
         for (int i = 0; i < amountOfDataInTheBuffer; i++) {
             sb.append(bufferReader[i]);
         }
