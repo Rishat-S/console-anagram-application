@@ -1,4 +1,4 @@
-package ua.com.foxminded;
+package ua.com.foxminded.anagram;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Use Latin alphabet for test only.
  **/
 
-class MainTest {
+class ConsoleAnagramApplicationTest {
 
-    ReversLine reversLine = new ReversLine();
-
+    AnagramProvider reversLine = new AnagramProvider();
 
     @Test
     void testRevers() {
-        String rev = reversLine.reverseSentance("abcd efgh");
+        String rev = reversLine.provideAnagram("abcd efgh");
         assertEquals("dcba hgfe", rev);
     }
 
     @Test
     void testReversWithSymbols() {
-        String rev = reversLine.reverseSentance("a1bcd efg!h");
+        String rev = reversLine.provideAnagram("a1bcd efg!h");
         assertEquals("d1cba hgf!e", rev);
     }
 
