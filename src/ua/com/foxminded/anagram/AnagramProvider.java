@@ -31,7 +31,7 @@ public class AnagramProvider {
         if (sentence == null) {
             throw new IllegalArgumentException("Sentence is null");
         }
-        if (sentence.equals("\n")) {
+        if (sentence.equals("\n") || sentence.equals("")) {
             throw new IllegalArgumentException("Sentence is empty");
         }
     }
